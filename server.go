@@ -1,6 +1,7 @@
 package main
 
 import (
+	"flag"
 	"fmt"
 	"log"
 	"net/http"
@@ -14,9 +15,14 @@ func (*middleware) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 }
 
 func main() {
-	fmt.Println("Serving files in the current directory on port 9001")
+	portPtr := flag.Int("port", 8000, "Port to bind")
+
+	// Parse all flags
+	flag.Parse()
+
+	fmt.Printf("Serving files in the current directory on port %d\n", *portPtr)
 	http.Handle("/", &middleware{})
-	err := http.ListenAndServe(":9001", nil)
+	err := http.ListenAndServe(fmt.Sprintf(":%d", *portPtr), nil)
 	if err != nil {
 		log.Fatal("ListenAndServe: ", err)
 	}
