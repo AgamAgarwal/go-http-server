@@ -5,12 +5,15 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"time"
 )
+
+var timeFormat = "Jan 2 2006 15:04:05"
 
 type middleware struct{}
 
 func (*middleware) ServeHTTP(w http.ResponseWriter, r *http.Request) {
-		fmt.Println(r.Method, r.URL, "from", r.RemoteAddr)
+		fmt.Println(r.Method, r.URL, "from", r.RemoteAddr, "at", time.Now().Format(timeFormat))
 		http.FileServer(http.Dir(".")).ServeHTTP(w, r)
 }
 
