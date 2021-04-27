@@ -22,7 +22,8 @@ This application currently supports the following flags:
 
 | Flag | Description | Default Value | Example |
 | --- | --- | --- | --- |
-| port | Port on which the server listens | 8000 | `go run server.go -port=8080` or `./server --port 8001`|
+| port | Port on which the server listens | 8000 | `go run server.go -port=8080` or `./server --port 8001` |
+| dir | Directory to serve | . | `go run server.go -dir=/path/to/dir` or `./server --dir /path/to/dir |
 
 ## Suggestions?
 
